@@ -7,6 +7,10 @@ const port = Number(process.env.PORT) || 3000;
 
 app.use(cors());
 
+app.get("/health", (_req, res) => {
+  res.status(200).json({ status: "OK" });
+});
+
 app.get("/products", (_req, res) => {
   res.status(200).json(products);
 });
