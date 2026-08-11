@@ -1,0 +1,22 @@
+{
+  "name": "products-api",
+  "version": "1.0.0",
+  "description": "API simples de produtos com dados mockados",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "api",
+    "products"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}

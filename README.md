@@ -1,53 +1,90 @@
-# Construa aplicações fullstack com o modo agent do GitHub Copilot
+# API de Produtos Simples
 
-<!-- ![](../../actions/workflows/0-start-course.yml/badge.svg?branch=main) -->
-<img src="https://github.com/user-attachments/assets/1b3ea5df-f18d-4ed8-9ae6-f96dc1861818" alt="octofit-tracker" width="300"/>
+API em Node.js (sem TypeScript) com um endpoint para listar produtos mockados.
 
-_Construa uma aplicação com o modo agent do GitHub Copilot em menos de uma hora._
+## Objetivo
 
-## Bem-vindo
+Disponibilizar um endpoint HTTP para retornar todos os produtos com a estrutura:
 
-As pessoas adoram como o GitHub Copilot as ajuda a escrever código mais rápido e com menos erros.
-Mas e se o GitHub pudesse criar uma aplicação multi-camadas com apresentação e APIs baseadas em requisitos escritos em linguagem natural?
-Neste exercício, iremos usar o modo agent do GitHub Copilot para criar uma aplicação completa.
+- id
+- title
+- price
 
-- **Para quem é**: Desenvolvedores intermediários familiarizados com GitHub Copilot, GitHub básico e desenvolvimento web básico
-- **O que você vai aprender**: Apresentaremos o modo agent do GitHub Copilot e como usá-lo para desenvolvimento de aplicações.
-- **O que você vai construir**: Você usará o modo agent do GitHub Copilot para criar uma aplicação de fitness como professor de educação física de uma escola.
-- **Pré-requisitos**: Exercício de Habilidades: <a href="https://github.com/skills/getting-started-with-github-copilot">Começando com GitHub Copilot</a>.
-- **Duração**: Este curso leva menos de uma hora para ser concluído.
+## Stack
 
-Neste exercício, você irá:
+- Node.js
+- Express
+- CORS habilitado para todos os hosts
 
-1. Inicializar um ambiente de desenvolvimento pré-configurado para criar uma aplicação multi-camadas.
-2. Fazer prompts no GitHub Copilot Chat e selecionar a aba edit e escolher o modo agent no menu suspenso edit/agent.
-3. Neste exercício utilizaremos principalmente o LLM padrão mais recente.
-4. Experimentar outros modelos LLM para ver diferentes saídas.
-5. Para cada etapa, abra uma nova sessão do Copilot Chat clicando no ícone de mais `+` no painel do Copilot Chat.
+## Estrutura do projeto
 
-### Como iniciar este exercício
+- app/backend
+	- src/server.js
+	- src/data/products.js
 
-Simplesmente copie o exercício para sua conta, então dê ao seu Octocat favorito (Mona) **cerca de 20 segundos** para preparar a primeira lição, depois **atualize a página**.
+## Pré-requisitos
 
-[![](https://img.shields.io/badge/Copiar%20Exerc%C3%ADcio-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=dev-pods&template_name=agent-mode-fullstack&owner=%40me&name=agent-mode-fullstack&description=Exercicio:+Construa+aplicacoes+com+modo+agent+do+GitHub+Copilot&visibility=public)
+- Node.js 18+ (recomendado Node.js 22)
+- npm
 
-<details>
-<summary>Tendo problemas? 🤷</summary><br/>
+## Como rodar
 
-Ao copiar o exercício, recomendamos as seguintes configurações:
+1. Instalar dependências:
 
-- Para proprietário, escolha sua conta pessoal ou uma organização para hospedar o repositório.
+```bash
+npm --prefix app/backend install
+```
 
-- Recomendamos criar um repositório público, pois repositórios privados usarão minutos do Actions.
+2. Executar em modo desenvolvimento:
 
-Se o exercício não estiver pronto em 20 segundos, verifique a aba "Actions" do seu repositório (ou visite `https://github.com/<SEU-USUARIO>/<SEU-REPO>/actions`).
+```bash
+npm --prefix app/backend run dev
+```
 
-- Verifique se um job está sendo executado. Às vezes simplesmente demora um pouco mais.
+3. Executar em modo padrão:
 
-- Se a página mostrar um job que falhou, por favor envie uma issue. Legal, você encontrou um bug! 🐛
+```bash
+npm --prefix app/backend run start
+```
 
-</details>
+## Porta
 
----
+- Padrão: 3000
+- Opcional: definir a variável de ambiente PORT
 
-&copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
+Exemplo:
+
+```bash
+PORT=3333 npm --prefix app/backend run start
+```
+
+## Endpoint
+
+### GET /products
+
+Retorna todos os produtos mockados.
+
+- Status esperado: 200
+- Content-Type: application/json
+
+Exemplo de resposta:
+
+```json
+[
+	{ "id": 1, "title": "Notebook", "price": 3500 },
+	{ "id": 2, "title": "Mouse", "price": 120.5 },
+	{ "id": 3, "title": "Teclado", "price": 280 },
+	{ "id": 4, "title": "Monitor", "price": 1400.99 }
+]
+```
+
+Exemplo de chamada:
+
+```bash
+curl http://localhost:3000/products
+```
+
+## Observações
+
+- Os dados de produtos são mockados e estão em app/backend/src/data/products.js.
+- O CORS está liberado para todos os hosts conforme diretriz do backend.
